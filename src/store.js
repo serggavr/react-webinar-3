@@ -5,7 +5,7 @@ class Store {
   constructor(initState = {}) {
     this.state = initState;
     this.listeners = []; // Слушатели изменений состояния
-    this.nextElementKey = this.state.list.length + 1 // code следующего элемента, в случае добавления в this.state.list
+    this.nextElementKey = this.state.list.length + 1; // code следующего элемента, в случае добавления в this.state.list
   }
 
   /**
@@ -13,7 +13,7 @@ class Store {
    * @returns number
    */
   getElementKey() {
-    return this.nextElementKey++
+    return this.nextElementKey++;
   }
 
   /**
@@ -77,8 +77,17 @@ class Store {
       list: this.state.list.map(item => {
         if (item.code === code) {
           item.selected = !item.selected;
+          if (item.selected) {
+            if (item.selectCounter) {
+              item.selectCounter++
+            } else {
+              item.selectCounter = 1
+              item.titleWithoutCounter = item.title.slice()
+            }
+            item.title = `${item.titleWithoutCounter} | Выделяли ${item.selectCounter} раз`
+          }
         } else {
-          item.selected = false
+          item.selected = false;
         }
         return item;
       })
