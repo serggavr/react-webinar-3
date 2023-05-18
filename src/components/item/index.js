@@ -56,8 +56,9 @@ Item.propTypes = {
     price: PropTypes.number
     // count: PropTypes.number
   }).isRequired,
-  onDelete: PropTypes.func,
-  onSelect: PropTypes.func
+  // onDelete: PropTypes.func,
+  onSelect: PropTypes.func,
+  onAddToCard: PropTypes.func,
 };
 
 Item.defaultProps = {
