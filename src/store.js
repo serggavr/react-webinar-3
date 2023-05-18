@@ -79,12 +79,12 @@ class Store {
           item.selected = !item.selected;
           if (item.selected) {
             if (item.selectCounter) {
-              item.selectCounter++
+              item.selectCounter++;
             } else {
-              item.selectCounter = 1
-              item.titleWithoutCounter = item.title.slice()
+              item.selectCounter = 1;
+              item.titleWithoutCounter = item.title.slice();
             }
-            item.title = `${item.titleWithoutCounter} | Выделяли ${item.selectCounter} раз`
+            item.title = `${item.titleWithoutCounter} | Выделяли ${item.selectCounter} раз`;
           }
         } else {
           item.selected = false;
