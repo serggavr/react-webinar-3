@@ -10,7 +10,10 @@ import { pluralPrice, calculateSum } from "../../utils";
 function Popup({
   cart,
   callbacks,
-  sumInCart
+  sumInCart,
+  itemButtonText,
+  onDeleteFromCart,
+  onButtonClick
   // onOpenCart,
   // isOpen,
   // onClose,
@@ -26,13 +29,16 @@ function Popup({
       <div className="popup_container">
         <div className="popup_header">
           <Head title='Корзина'>
-            <Button text="Закрыть" callback={() => console.log('!!')} />
+            <Button text="Закрыть" onClick={() => console.log('!!')} />
           </Head>
         </div>
         <div className="popup_content">
-          <List list={cart}
-            onDeleteItem={callbacks.onDeleteItem}
+          <List
+            list={cart}
+            itemButtonText={itemButtonText}
+            onButtonClick={onButtonClick}
             onSelectItem={callbacks.onSelectItem}
+
           />
           <div className="popup_info-block">
             Итого:

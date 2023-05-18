@@ -3,15 +3,22 @@ import PropTypes from "prop-types";
 import { plural } from "../../utils";
 import './style.css';
 import { pluralPrice } from '../../utils'
+import Button from '../button'
 
-function Item(props) {
+function Item({
+  item,
+  // onAddToCart,
+  onSelect,
+  itemButtonText,
+  onButtonClick
+}) {
 
   // Счётчик выделений
   // const [count, setCount] = useState(0);
 
   const callbacks = {
     onClick: () => {
-      props.onSelect(props.item.code);
+      onSelect(item.code);
       // if (!props.item.selected) {
       //   setCount(count + 1);
       // }
@@ -23,29 +30,40 @@ function Item(props) {
     onAddToCart: (e) => {
       e.stopPropagation();
       // console.log(props.item)
-      props.onAddToCart(props.item);
+      onAddToCart(item);
+    },
+
+    handleButtonClick: (e) => {
+      // e.stopPropagation();
+      console.log(item)
+      // onButtonClick(item);
     }
   }
 
+  const handleButtonClick = (e) => {
+    onButtonClick(item);
+  }
+
   return (
-    <div className={'Item' + (props.item.selected ? ' Item_selected' : '')}
+    <div className={'Item' + (item.selected ? ' Item_selected' : '')}
     // onClick={callbacks.onClick}
     // onClick={props.onClick}
     >
-      <div className='Item-code'>{props.item.code}</div>
+      <div className='Item-code'>{item.code}</div>
       <div className='Item-title'>
         {/* {props.item.title} {count ? ` | Выделяли ${count} ${plural(count, {one: 'раз', few: 'раза', many: 'раз'})}` : ''} */}
-        {props.item.title}
+        {item.title}
       </div>
-      <div className="Item-price">{pluralPrice(props.item.price)}</div>
-      {props.item.value && <p className="Item-value">{`${props.item.value} шт`}</p>}
+      <div className="Item-price">{pluralPrice(item.price)}</div>
+      {item.value && <p className="Item-value">{`${item.value} шт`}</p>}
       <div className='Item-actions'>
-        <button className="button"
+        {/* <button className="button"
           onClick={callbacks.onAddToCart}
         // onClick={() => props.onAddToCart(props)}
         >
           Добавить
-        </button>
+        </button> */}
+        <Button text={itemButtonText} onClick={handleButtonClick} />
       </div>
     </div >
   );

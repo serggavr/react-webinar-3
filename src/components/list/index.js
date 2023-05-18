@@ -5,16 +5,17 @@ import './style.css';
 
 function List({
   list,
-  // onDeleteItem,
+  onButtonClick,
   onSelectItem,
   onAddToCart,
+  itemButtonText
 }) {
   return (
     <div className='List'>{
       list.map(item =>
         <div key={item.code} className='List-item'>
           {/* <Item item={item} onDelete={onDeleteItem} onSelect={onSelectItem}/> */}
-          <Item item={item} onAddToCart={onAddToCart} onSelect={onSelectItem} />
+          <Item item={item} onButtonClick={onButtonClick} onSelect={onSelectItem} itemButtonText={itemButtonText} />
         </div>
       )}
     </div>

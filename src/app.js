@@ -48,6 +48,10 @@ function App({ store, cart }) {
     onAddToCart: useCallback((item) => {
       cart.addItem(item);
     }, [store, cart]),
+
+    onDeleteFromCart: useCallback((item) => {
+      cart.deleteItem(item);
+    }, [store, cart])
   }
 
   return (
@@ -57,8 +61,9 @@ function App({ store, cart }) {
         <Controls onAdd={callbacks.onAddItem} quantityItemsInCart={quantityItemsInCart} sumInCart={sumInCart} />
         <List list={list}
           onDeleteItem={callbacks.onDeleteItem}
-          onAddToCart={callbacks.onAddToCart}
+          onButtonClick={callbacks.onAddToCart}
           onSelectItem={callbacks.onSelectItem}
+          itemButtonText="Добавить"
         // onSetSumInCart={handleSetSumInCart}
         />
 
@@ -68,6 +73,10 @@ function App({ store, cart }) {
         callbacks={callbacks}
         sumInCart={sumInCart}
         quantityItemsInCart={quantityItemsInCart}
+
+        itemButtonText="Удалить"
+        onButtonClick={callbacks.onDeleteFromCart}
+      // onDeleteFromCart={callbacks.onDeleteFromCart}
       // onSetSumInCart={handleSetSumInCart} 
       />
     </>

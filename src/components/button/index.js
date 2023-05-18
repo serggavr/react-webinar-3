@@ -6,15 +6,19 @@ function Button({
   // onAdd,
   // onOpenCart,
   // cart
-  callback,
+  onClick,
   text
 }) {
   // function onClick(callback) {
   //   callback()
   // }
+  function callback(e) {
+    e.stopPropagation()
+    onClick()
+  }
 
   return (
-    <button className='button' onClick={() => callback()}>{text}</button>
+    <button className='button' onClick={(e) => callback(e)}>{text}</button>
   )
 }
 
