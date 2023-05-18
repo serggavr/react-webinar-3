@@ -1,4 +1,4 @@
-import {generateCode} from "./utils";
+import { generateCode } from "./utils";
 
 /**
  * Хранилище состояния приложения
@@ -46,7 +46,7 @@ class Store {
   addItem() {
     this.setState({
       ...this.state,
-      list: [...this.state.list, {code: generateCode(), title: 'Новая запись'}]
+      list: [...this.state.list, { code: generateCode(), title: 'Новая запись' }]
     })
   };
 
@@ -79,7 +79,7 @@ class Store {
           };
         }
         // Сброс выделения если выделена
-        return item.selected ? {...item, selected: false} : item;
+        return item.selected ? { ...item, selected: false } : item;
       })
     })
   }

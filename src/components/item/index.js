@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { plural } from "../../utils";
 import './style.css';
+import { pluralPrice } from '../../utils'
 
 function Item(props) {
 
@@ -21,30 +22,32 @@ function Item(props) {
     // }
     onAddToCart: (e) => {
       e.stopPropagation();
-      // console.log(props.item.code)
-      props.onAddToCart(props.item.code);
+      // console.log(props.item)
+      props.onAddToCart(props.item);
     }
   }
 
   return (
     <div className={'Item' + (props.item.selected ? ' Item_selected' : '')}
-      onClick={callbacks.onClick}>
+    // onClick={callbacks.onClick}
+    // onClick={props.onClick}
+    >
       <div className='Item-code'>{props.item.code}</div>
       <div className='Item-title'>
         {/* {props.item.title} {count ? ` | Выделяли ${count} ${plural(count, {one: 'раз', few: 'раза', many: 'раз'})}` : ''} */}
         {props.item.title}
       </div>
-      <div className="Item-price">{props.item.price.toLocaleString('ru-RU', {
-        style: 'currency',
-        currency: 'RUB',
-        minimumFractionDigits: 0
-      })}</div>
+      <div className="Item-price">{pluralPrice(props.item.price)}</div>
+      {props.item.value && <p className="Item-value">{`${props.item.value} шт`}</p>}
       <div className='Item-actions'>
-        <button className="button" onClick={callbacks.onAddToCart}>
+        <button className="button"
+          onClick={callbacks.onAddToCart}
+        // onClick={() => props.onAddToCart(props)}
+        >
           Добавить
         </button>
       </div>
-    </div>
+    </div >
   );
 }
 
@@ -67,4 +70,5 @@ Item.defaultProps = {
   onAddToCart: () => { },
 }
 
-export default React.memo(Item);
+// export default React.memo(Item);
+export default Item;

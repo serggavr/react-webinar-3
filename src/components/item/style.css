@@ -21,7 +21,13 @@
 }
 
 .Item-price {
+  padding-right: 62px;
+}
+
+.Item-value {
+  margin: 0;
   padding-right: 24px;
+  white-space: nowrap;
 }
 
 .Item-actions {
