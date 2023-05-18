@@ -21,11 +21,13 @@
 }
 
 .Item-price {
-  padding-right: 14px;
+  padding-right: 24px;
 }
 
 .Item-actions {
-  display: flex;
-  justify-content: flex-end;
-  padding: 20px 20px 20px 10px;
+  /* display: flex; */
+  /* justify-content: flex-end; */
+  /* align-items:center; */
+  /* padding: 20px 20px 20px 10px; */
+  padding-right: 20px;
 }

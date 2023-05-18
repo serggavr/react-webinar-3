@@ -3,3 +3,19 @@
   justify-content: flex-end;
   padding: 20px;
 }
+
+.Controls-info-block {
+  padding-right: 20px;
+}
+
+.Controls-info-block span {
+  padding-left: 15px;
+  font-size: 17px;
+  line-height: 21px;
+  font-weight: 700;
+}
+
+.button {
+  width: 80px;
+  height: 21px;
+}

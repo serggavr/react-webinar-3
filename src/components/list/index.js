@@ -7,14 +7,14 @@ function List({
   list,
   // onDeleteItem,
   onSelectItem,
-  onAddToCard
+  onAddToCart
 }) {
   return (
     <div className='List'>{
       list.map(item =>
         <div key={item.code} className='List-item'>
           {/* <Item item={item} onDelete={onDeleteItem} onSelect={onSelectItem}/> */}
-          <Item item={item} onAddToCard={onAddToCard} onSelect={onSelectItem} />
+          <Item item={item} onAddToCart={onAddToCart} onSelect={onSelectItem} />
         </div>
       )}
     </div>
@@ -27,13 +27,13 @@ List.propTypes = {
   })).isRequired,
   // onDeleteItem: PropTypes.func,
   onSelectItem: PropTypes.func,
-  onAddToCard: PropTypes.func
+  onAddToCart: PropTypes.func
 };
 
 List.defaultProps = {
   // onDeleteItem: () => {},
   onSelectItem: () => { },
-  onAddToCard: () => { },
+  onAddToCart: () => { },
 }
 
 export default React.memo(List);

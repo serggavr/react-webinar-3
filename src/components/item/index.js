@@ -19,10 +19,10 @@ function Item(props) {
     //   e.stopPropagation();
     //   props.onDelete(props.item.code);
     // }
-    onAddToCard: (e) => {
+    onAddToCart: (e) => {
       e.stopPropagation();
       // console.log(props.item.code)
-      props.onAddToCard(props.item.code);
+      props.onAddToCart(props.item.code);
     }
   }
 
@@ -40,7 +40,7 @@ function Item(props) {
         minimumFractionDigits: 0
       })}</div>
       <div className='Item-actions'>
-        <button onClick={callbacks.onAddToCard}>
+        <button className="button" onClick={callbacks.onAddToCart}>
           Добавить
         </button>
       </div>
@@ -58,13 +58,13 @@ Item.propTypes = {
   }).isRequired,
   // onDelete: PropTypes.func,
   onSelect: PropTypes.func,
-  onAddToCard: PropTypes.func,
+  onAddToCart: PropTypes.func,
 };
 
 Item.defaultProps = {
   // onDelete: () => { },
   onSelect: () => { },
-  onAddToCard: () => { },
+  onAddToCart: () => { },
 }
 
 export default React.memo(Item);
