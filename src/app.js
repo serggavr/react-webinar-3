@@ -1,10 +1,11 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import List from "./components/list";
 import Controls from "./components/controls";
 import Head from "./components/head";
 import PageLayout from "./components/page-layout";
 // import Cart from "./components/cart"
 import Popup from "./components/popup"
+import { pluralPrice, calculateSum, calculateQuantity } from './utils';
 
 /**
  * Приложение
@@ -15,6 +16,21 @@ function App({ store, cart }) {
 
   const list = store.getState().list;
   const cartList = cart.getState().list;
+  const [sumInCart, setSumInCart] = useState(0)
+  const [quantityItemsInCart, setQuantityItemsInCart] = useState(0)
+
+  const handleSetSumInCart = (cartList) => {
+    setSumInCart(pluralPrice(calculateSum(cartList)))
+  }
+
+  const handleSetQuantityItemsInCart = (cartList) => {
+    setQuantityItemsInCart(calculateQuantity(cartList))
+  }
+
+  useEffect(() => {
+    handleSetSumInCart(cartList)
+    handleSetQuantityItemsInCart(cartList)
+  }, [cartList])
 
   const callbacks = {
     onDeleteItem: useCallback((code) => {
@@ -38,14 +54,22 @@ function App({ store, cart }) {
     <>
       <PageLayout>
         <Head title='Приложение на чистом JS' />
-        <Controls onAdd={callbacks.onAddItem} />
+        <Controls onAdd={callbacks.onAddItem} quantityItemsInCart={quantityItemsInCart} sumInCart={sumInCart} />
         <List list={list}
           onDeleteItem={callbacks.onDeleteItem}
           onAddToCart={callbacks.onAddToCart}
-          onSelectItem={callbacks.onSelectItem} />
+          onSelectItem={callbacks.onSelectItem}
+        // onSetSumInCart={handleSetSumInCart}
+        />
 
       </PageLayout>
-      <Popup cart={cartList} callbacks={callbacks} />
+      <Popup
+        cart={cartList}
+        callbacks={callbacks}
+        sumInCart={sumInCart}
+        quantityItemsInCart={quantityItemsInCart}
+      // onSetSumInCart={handleSetSumInCart} 
+      />
     </>
   );
 }

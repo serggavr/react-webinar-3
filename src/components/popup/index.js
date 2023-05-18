@@ -5,20 +5,21 @@ import Button from "../button";
 import './style.css';
 import Item from "../item";
 import List from '../list'
-import { pluralPrice } from "../../utils";
+import { pluralPrice, calculateSum } from "../../utils";
 
 function Popup({
   cart,
-  callbacks
+  callbacks,
+  sumInCart
   // onOpenCart,
   // isOpen,
   // onClose,
   // children
 }) {
 
-  function calculateSum(list) {
-    return list.reduce((sum, item) => sum + item.price, 0)
-  }
+  // function calculateSum(list) {
+  //   return list.reduce((sum, item) => sum + item.price, 0)
+  // }
 
   return (
     <div className="popup">
@@ -35,7 +36,8 @@ function Popup({
           />
           <div className="popup_info-block">
             Итого:
-            <span>{pluralPrice(calculateSum(cart))}</span>
+            {/* <span>{pluralPrice(calculateSum(cart))}</span> */}
+            <span>{sumInCart}</span>
           </div>
         </div>
       </div>

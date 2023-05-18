@@ -24,6 +24,14 @@ export function pluralPrice(value, locale = 'ru-RU') {
   })
 }
 
+export function calculateSum(list) {
+  return list.reduce((sum, item) => sum + (item.price * item.value), 0)
+}
+
+export function calculateQuantity(list) {
+  return list.reduce((sum, item) => sum + item.value, 0)
+}
+
 /**
  * Генератор чисел с шагом 1
  * Вариант с замыканием на начальное значение в самовызываемой функции.

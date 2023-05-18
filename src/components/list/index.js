@@ -7,7 +7,7 @@ function List({
   list,
   // onDeleteItem,
   onSelectItem,
-  onAddToCart
+  onAddToCart,
 }) {
   return (
     <div className='List'>{
