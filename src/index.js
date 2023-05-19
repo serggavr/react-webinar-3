@@ -17,13 +17,7 @@ const store = new Store({
   ]
 });
 
-const cart = new Cart({
-  list: [
-    // { code: 1, title: 'Название товара', price: 100.0, value: 1 },
-    // { code: 2, title: 'Книга про React', price: 770, value: 2 },
-    // { code: 3, title: 'Конфета', price: 33, value: 1 },
-  ]
-});
+const cart = new Cart({ list: [] });
 
 const root = createRoot(document.getElementById('root'));
 

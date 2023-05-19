@@ -1,69 +1,29 @@
-import React, { useState } from "react";
+import React, { useCallback } from "react";
 import PropTypes from "prop-types";
-import { plural } from "../../utils";
-import './style.css';
 import { pluralPrice } from '../../utils'
 import Button from '../button'
+import './style.css';
 
 function Item({
   item,
-  // onAddToCart,
-  onSelect,
   itemButtonText,
   onButtonClick
 }) {
 
-  // Счётчик выделений
-  // const [count, setCount] = useState(0);
-
   const callbacks = {
-    onClick: () => {
-      onSelect(item.code);
-      // if (!props.item.selected) {
-      //   setCount(count + 1);
-      // }
-    },
-    // onDelete: (e) => {
-    //   e.stopPropagation();
-    //   props.onDelete(props.item.code);
-    // }
-    onAddToCart: (e) => {
-      e.stopPropagation();
-      // console.log(props.item)
-      onAddToCart(item);
-    },
-
-    handleButtonClick: (e) => {
-      // e.stopPropagation();
-      console.log(item)
-      // onButtonClick(item);
-    }
-  }
-
-  const handleButtonClick = (e) => {
-    onButtonClick(item);
+    handleOnClick: useCallback(() => {
+      onButtonClick(item)
+    }, []),
   }
 
   return (
-    <div className={'Item' + (item.selected ? ' Item_selected' : '')}
-    // onClick={callbacks.onClick}
-    // onClick={props.onClick}
-    >
-      <div className='Item-code'>{item.code}</div>
-      <div className='Item-title'>
-        {/* {props.item.title} {count ? ` | Выделяли ${count} ${plural(count, {one: 'раз', few: 'раза', many: 'раз'})}` : ''} */}
-        {item.title}
-      </div>
-      <div className="Item-price">{pluralPrice(item.price)}</div>
-      {item.value && <p className="Item-value">{`${item.value} шт`}</p>}
-      <div className='Item-actions'>
-        {/* <button className="button"
-          onClick={callbacks.onAddToCart}
-        // onClick={() => props.onAddToCart(props)}
-        >
-          Добавить
-        </button> */}
-        <Button text={itemButtonText} onClick={handleButtonClick} />
+    <div className='item'>
+      <div className='item__code'>{item.code}</div>
+      <div className='item__title'>{item.title}</div>
+      <div className="item__price">{pluralPrice(item.price)}</div>
+      {item.value && <p className="item__value">{`${item.value} шт`}</p>}
+      <div className='item__actions'>
+        <Button buttonText={itemButtonText} onClick={callbacks.handleOnClick} />
       </div>
     </div >
   );
@@ -73,20 +33,20 @@ Item.propTypes = {
   item: PropTypes.shape({
     code: PropTypes.number,
     title: PropTypes.string,
-    selected: PropTypes.bool,
     price: PropTypes.number
-    // count: PropTypes.number
   }).isRequired,
-  // onDelete: PropTypes.func,
-  onSelect: PropTypes.func,
-  onAddToCart: PropTypes.func,
+  itemButtonText: PropTypes.string,
+  onButtonClick: PropTypes.func,
 };
 
 Item.defaultProps = {
-  // onDelete: () => { },
-  onSelect: () => { },
-  onAddToCart: () => { },
+  item: PropTypes.shape({
+    code: PropTypes.number,
+    title: PropTypes.string,
+    price: PropTypes.number
+  }),
+  itemButtonText: '',
+  onButtonClick: () => { }
 }
 
-// export default React.memo(Item);
 export default Item;

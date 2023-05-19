@@ -29,7 +29,8 @@ export function calculateSum(list) {
 }
 
 export function calculateQuantity(list) {
-  return list.reduce((sum, item) => sum + item.value, 0)
+  // return list.reduce((sum, item) => sum + item.value, 0)
+  return list.length
 }
 
 /**

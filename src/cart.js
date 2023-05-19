@@ -1,12 +1,6 @@
 import Store from "./store";
 
 class Cart extends Store {
-  // constructor(initState = {}) {
-  //   super(state)
-  // }
-  // checkItem(item) {
-  //   this.list.forEach()
-  // }
 
   addItem(item) {
     let itemAlreadyInCart = false

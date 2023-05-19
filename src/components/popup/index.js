@@ -2,75 +2,57 @@ import React from "react";
 import PropTypes from 'prop-types';
 import Head from "../head";
 import Button from "../button";
-import './style.css';
-import Item from "../item";
 import List from '../list'
-import { pluralPrice, calculateSum } from "../../utils";
+import './style.css';
 
 function Popup({
   cart,
-  callbacks,
   sumInCart,
   itemButtonText,
-  onDeleteFromCart,
-  onButtonClick
-  // onOpenCart,
-  // isOpen,
-  // onClose,
-  // children
+  onButtonClick,
+  isOpen,
+  onPopupToggle
 }) {
-
-  // function calculateSum(list) {
-  //   return list.reduce((sum, item) => sum + item.price, 0)
-  // }
-
   return (
-    <div className="popup">
-      <div className="popup_container">
-        <div className="popup_header">
+    <div className={`popup ${isOpen ? 'popup_opened' : ''}`}>
+      <div className="popup__container">
+        <div className="popup__header">
           <Head title='Корзина'>
-            <Button text="Закрыть" onClick={() => console.log('!!')} />
+            <Button buttonText="Закрыть" onClick={onPopupToggle} />
           </Head>
         </div>
-        <div className="popup_content">
+        <div className="popup__content">
           <List
             list={cart}
             itemButtonText={itemButtonText}
             onButtonClick={onButtonClick}
-            onSelectItem={callbacks.onSelectItem}
-
           />
-          <div className="popup_info-block">
-            Итого:
-            {/* <span>{pluralPrice(calculateSum(cart))}</span> */}
+          <div className="popup__info-block">
+            <span className="popup__info-block-text">Итого</span>
             <span>{sumInCart}</span>
           </div>
         </div>
       </div>
     </div>
-    // <div className={`popup ${isOpen && `popup_opened`}`}>
-    //   <div className="popup__container">
-    //     <button
-    //       className="popup__close-button"
-    //       type="button"
-    //       aria-label="Закрыть"
-    //       onClick={onClose}
-    //     ></button>
-
-    //   </div>
-    // </div>
-
   )
 }
 
-// Controls.propTypes = {
-//   // onAdd: PropTypes.func,
-//   onOpenCart: PropTypes.func,
-// };
+Popup.propTypes = {
+  cart: PropTypes.array,
+  sumInCart: PropTypes.string,
+  itemButtonText: PropTypes.string,
+  onButtonClick: PropTypes.func,
+  isOpen: PropTypes.bool,
+  onPopupToggle: PropTypes.func
+};
 
-// Controls.defaultProps = {
-//   // onAdd: () => {},
-//   onOpenCart: () => { }
-// }
+Popup.defaultProps = {
+  cart: [],
+  sumInCart: '',
+  itemButtonText: '',
+  isOpen: false,
+  onButtonClick: () => { },
+  onPopupToggle: () => { }
+}
 
 export default React.memo(Popup);

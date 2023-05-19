@@ -3,33 +3,22 @@ import PropTypes from 'prop-types';
 import './style.css';
 
 function Button({
-  // onAdd,
-  // onOpenCart,
-  // cart
   onClick,
-  text
+  buttonText
 }) {
-  // function onClick(callback) {
-  //   callback()
-  // }
-  function callback(e) {
-    e.stopPropagation()
-    onClick()
-  }
-
   return (
-    <button className='button' onClick={(e) => callback(e)}>{text}</button>
+    <button className='button' onClick={onClick}>{buttonText}</button>
   )
 }
 
-// Controls.propTypes = {
-//   // onAdd: PropTypes.func,
-//   onOpenCart: PropTypes.func,
-// };
+Button.propTypes = {
+  buttonText: PropTypes.string,
+  onClick: PropTypes.func,
+};
 
-// Controls.defaultProps = {
-//   // onAdd: () => {},
-//   onOpenCart: () => { }
-// }
+Button.defaultProps = {
+  buttonText: '',
+  onClick: () => { }
+}
 
 export default React.memo(Button);
