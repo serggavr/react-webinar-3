@@ -21,13 +21,7 @@ class Cart extends Store {
   }
 
   deleteItem(item) {
-    const arr = this.state.list.map(el => {
-      if (el.code === item.code) {
-        el.value--
-      }
-      return el
-    })
-    this.setState({ ...this.state, list: [...arr.filter(el => el.value > 0)] })
+    this.setState({ ...this.state, list: [...this.state.list.filter(el => el.code !== item.code)] })
   }
 }
 
