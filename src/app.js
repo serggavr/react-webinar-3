@@ -12,9 +12,10 @@ import './app.css'
  * @param store {Store} Хранилище состояния приложения
  * @returns {React.ReactElement}
  */
-function App({ store, cart }) {
+
+function App({ store }) {
   const list = store.getState().list;
-  const cartList = cart.getState().list;
+  const cartList = store.getState().cart;
 
   const [sumInCart, setSumInCart] = useState('')
   const [quantityItemsInCart, setQuantityItemsInCart] = useState(0)
@@ -40,12 +41,12 @@ function App({ store, cart }) {
 
   const callbacks = {
     onAddToCart: useCallback((item) => {
-      cart.addItem(item);
-    }, [cart]),
+      store.addItem(item);
+    }, [store]),
 
-    onDeleteFromCart: useCallback((item) => {
-      cart.deleteItem(item);
-    }, [cart])
+    onDeleteFromCart: useCallback((code) => {
+      store.deleteItem(code);
+    }, [store])
   }
 
   return (
