@@ -1,3 +1,7 @@
 .list__item {
-  border: 1px dashed #ccc;
+  border-bottom: 1px dashed #ccc;
 }
+.list__item:first-child {
+  border-top: 1px dashed #ccc;
+}
+
