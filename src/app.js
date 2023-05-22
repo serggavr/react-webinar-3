@@ -4,6 +4,7 @@ import Controls from "./components/controls";
 import Head from "./components/head";
 import PageLayout from "./components/page-layout";
 import Popup from "./components/popup"
+import Cart from "./components/cart"
 import { pluralPrice } from './utils';
 import './app.css'
 
@@ -57,15 +58,15 @@ function App({ store }) {
         />
 
       </PageLayout>
-      <Popup
-        isOpen={popupIsOpen}
-        onPopupToggle={handlePopupToggle}
-        cart={cartList}
-        sumInCart={sumInCart}
-        quantityItemsInCart={quantityItemsInCart}
-        itemButtonText="Удалить"
-        onButtonClick={callbacks.onDeleteFromCart}
-      />
+      <Popup isOpen={popupIsOpen} onPopupToggle={handlePopupToggle}>
+        <Cart
+          cart={cartList}
+          sumInCart={sumInCart}
+          quantityItemsInCart={quantityItemsInCart}
+          itemButtonText="Удалить"
+          onButtonClick={callbacks.onDeleteFromCart}
+        />
+      </Popup>
     </>
   );
 }

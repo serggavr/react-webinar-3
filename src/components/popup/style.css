@@ -29,20 +29,3 @@
   margin: 0 32px;
   background: #fff; 
 }
-
-.popup__content {
-  display: flex;
-  flex-direction: column;
-}
-
-.popup__info-block {
-  padding: 25px 120px 85px 0;
-  align-self: flex-end;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 21px;
-}
-
-.popup__info-block span {
-  padding-left: 53px;
-}

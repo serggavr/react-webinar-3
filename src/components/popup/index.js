@@ -6,12 +6,9 @@ import List from '../list'
 import './style.css';
 
 function Popup({
-  cart,
-  sumInCart,
-  itemButtonText,
-  onButtonClick,
   isOpen,
-  onPopupToggle
+  onPopupToggle,
+  children
 }) {
   return (
     <div className={`popup ${isOpen ? 'popup_opened' : ''}`}>
@@ -21,37 +18,19 @@ function Popup({
             <Button buttonText="Закрыть" onClick={onPopupToggle} />
           </Head>
         </div>
-        <div className="popup__content">
-          <List
-            list={cart}
-            itemButtonText={itemButtonText}
-            onButtonClick={onButtonClick}
-          />
-          <div className="popup__info-block">
-            <span className="popup__info-block-text">Итого</span>
-            <span>{sumInCart}</span>
-          </div>
-        </div>
+        {children}
       </div>
     </div>
   )
 }
 
 Popup.propTypes = {
-  cart: PropTypes.array,
-  sumInCart: PropTypes.string,
-  itemButtonText: PropTypes.string,
-  onButtonClick: PropTypes.func,
   isOpen: PropTypes.bool,
   onPopupToggle: PropTypes.func
 };
 
 Popup.defaultProps = {
-  cart: [],
-  sumInCart: '',
-  itemButtonText: '',
   isOpen: false,
-  onButtonClick: () => { },
   onPopupToggle: () => { }
 }
 
