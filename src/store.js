@@ -67,6 +67,22 @@ class Store {
   deleteItem(item) {
     this.setState({ ...this.state, cart: [...this.state.cart.filter(el => el.code !== item.code)] })
   }
+
+  // /**
+  //  * Возвращает сумму стоимости всех товаров в корзине
+  // @returns number
+  //  */
+  calculateSumInCart() {
+    return this.state.cart.reduce((sum, item) => sum + (item.price * item.value), 0)
+  }
+
+  // /**
+  //  * Возвращает количество уникальных товаров в корзине
+  // @returns number
+  //  */
+  calculateQuantityItemsInCart() {
+    return this.state.cart.length
+  }
 }
 
 export default Store;

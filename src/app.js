@@ -4,7 +4,7 @@ import Controls from "./components/controls";
 import Head from "./components/head";
 import PageLayout from "./components/page-layout";
 import Popup from "./components/popup"
-import { pluralPrice, calculateSum, calculateQuantity } from './utils';
+import { pluralPrice } from './utils';
 import './app.css'
 
 /**
@@ -23,20 +23,11 @@ function App({ store }) {
 
   const handlePopupToggle = () => {
     setPopupIsOpen(!popupIsOpen)
-    console.log(popupIsOpen)
-  }
-
-  const handleSetSumInCart = (cartList) => {
-    setSumInCart(pluralPrice(calculateSum(cartList)))
-  }
-
-  const handleSetQuantityItemsInCart = (cartList) => {
-    setQuantityItemsInCart(calculateQuantity(cartList))
   }
 
   useEffect(() => {
-    handleSetSumInCart(cartList)
-    handleSetQuantityItemsInCart(cartList)
+    setSumInCart(pluralPrice(store.calculateSumInCart()))
+    setQuantityItemsInCart(store.calculateQuantityItemsInCart())
   }, [cartList])
 
   const callbacks = {
